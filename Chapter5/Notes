@@ -101,6 +101,7 @@ Generalization.
 ◼ Option 8C: Single relation with one type attribute : can not be applied with overlapped cases.
 ◼ Option 8D: Single relation with multiple type attributes : can not be applied for 4 cases.
 ❑ Step 9: Mapping of Union Types (Categories)
+> Create a relation R and create a new primary key.
 
 
 
