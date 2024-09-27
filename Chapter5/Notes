@@ -66,7 +66,41 @@ what should happen when we insert alue doesn't match our constrain  :
 3-  do it anyway and appear for you that there is an error 
 
 
-
+**STEPS TO MAP AN ER TO A DATABASE SCHEMA**
+❑ Step 1: Mapping of Regular Entity Types
+> For each regular entity type E in the ER diagram, create a relation R that includes all the simple attributes of E.
+> Choose one of the key attributes of E as the primary key for R.
+> If the chosen key of E is composite, the set of simple attributes that form it will together form the primary key of R.
+❑ Step 2: Mapping of Weak Entity Types
+> For each weak entity type W in the ER schema with owner entity type E, create a relation R & include all simple attributes (or simple components of composite attributes) of W as attributes of R.
+> Also, include as foreign key attributes of R the primary key attribute(s) of the relation(s) that correspond to the owner entity type(s).
+> The primary key of R is the combination of the primary key(s) of the owner(s) and the partial key of the weak entity type W, if any.
+❑ Step 3: Mapping of Binary 1:1 Relationship Types
+> For each regular binary 1:1 relationship type R in the ER schema, identify the relations S and T that correspond to the entity types participating in R.
+> Choose one of the relations-say S-and include a foreign key in Sthe primary key of T. It is better to choose an entity type with total participation in R in the role of S.
+❑ Step 4: Mapping of Binary 1:N Relationship Types
+> For each regular binary 1:N relationship type R, identify the relation S that represent the participating entity type at the N-side of the raltionship type.
+> Include as foreign key in S the primary key of the relation T that represents the other entity type participating in R.
+> Include any simple attributes of the 1:N relation type as attributes of S.
+❑ Step 5: Mapping of Binary M:N Relationship Types
+> For each regular binary M:N relationship type R, create a new relation S to represent R.
+> Include as foreign key attributes in S the primary keys of the combination will form the primary key of S.
+> Also include any simple attributes of the M:N relationship type (or simple components of composite attributes) as attributes of S.
+❑ Step 6: Mapping of Multivalued attributes
+> For each multivalued attribute A, create a new relation R.
+> This relation R will include an attribute corresponding to A, plus the primary key attribute K- as a foreign key in R- of the relation that represents the entity type of relationship type that has A as an attribute.
+> The primary key of R is the combination of A and K. If the multivalued attribute is composite, we include its simple components.
+❑ Step 7: Mapping of N-ary Relationship Types
+> For each n-ary relationship type R, where n>2, create a new relationship S to represent R.
+> Include as foreign key attributes in S the primary keys of the relations that represent the participating entity types.
+> Also include any simple attributes of the n-ary relationship type (or simple components of composite attributes) as attributes of S
+❑ Step 8: Options for Mapping Specialization or
+Generalization.
+◼ Option 8A: Multiple relations-Superclass and subclasses : can be applied for 4 cases.
+◼ Option 8B: Multiple relations-Subclass relations only : can be applied with total participation for disjoint and overlapped.
+◼ Option 8C: Single relation with one type attribute : can not be applied with overlapped cases.
+◼ Option 8D: Single relation with multiple type attributes : can not be applied for 4 cases.
+❑ Step 9: Mapping of Union Types (Categories)
 
 
 
