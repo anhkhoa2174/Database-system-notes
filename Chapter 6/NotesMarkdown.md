@@ -1,12 +1,12 @@
 Notes of chapter 6
 
-* Relational algebra *
+*Relational algebra*
 
 - Unary Relational Operations: SELECT
 
 - sigma<sup><selection condition></sup>(R)
 
-* SQL commands *
+*SQL commands*
 
 - when changing foreign key or the primary key should the database refuse or have another option
 
@@ -24,7 +24,7 @@ Notes of chapter 6
 
 - project operator has sign is pi , we use it to select some of columns (vertical partitions)
 
-\*The first feature allows comparison conditions on only parts of a character string, using the LIKE comparison operator
+- The first feature allows comparison conditions on only parts of a character string, using the LIKE comparison operator
 
 - Between - AND - OR - NOT
 
