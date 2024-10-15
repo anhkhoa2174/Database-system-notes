@@ -1,12 +1,12 @@
 Notes of chapter 6
 
-** Relational algebra
+* Relational algebra *
 
 - Unary Relational Operations: SELECT
 
 - sigma<sup><selection condition></sup>(R)
 
-** SQL commands
+* SQL commands *
 
 - when changing foreign key or the primary key should the database refuse or have another option
 
