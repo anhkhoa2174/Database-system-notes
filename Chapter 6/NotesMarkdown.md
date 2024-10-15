@@ -21,7 +21,8 @@
 
 - **CARTESIAN PRODUCT**
 
-  > R × S will combine every tuple of R with every tuple of S.  
+  > R × S will combine every tuple of R with every tuple of S (R has n attributes and n<sub>S</sub> tuples; S has m attributes and n<sub>R</sub> tuples ).  
+  > Result is a relation with degree n + m attributes, n<sub>S</sub> \* n<sub>R</sub> tuples.
   > **Example**:
   >
   > Let R =  
@@ -43,6 +44,61 @@
   > | 1 | 2 | 6 |  
   > | 3 | 4 | 5 |  
   > | 3 | 4 | 6 |
+
+- **EQUIJOIN**
+
+  > R ⨝<sub>join condition</sub> S  
+  > When the "join condition" is "=", it's called an **EQUIJOIN**.  
+  > Example:
+
+  > R(A, B, C)  
+  > | A | B | C |  
+  > |---|---|---|  
+  > | 1 | 2 | 5 |  
+  > | 3 | 4 | 7 |
+
+  > S(C, D)  
+  > | C | D |  
+  > |---|---|  
+  > | 5 | 9 |  
+  > | 7 | 10 |
+
+  > EQUIJOIN (R.C = S.C)  
+  > | A | B | R.C | S.C | D |  
+  > |---|---|-----|-----|----|  
+  > | 1 | 2 | 5 | 5 | 9 |  
+  > | 3 | 4 | 7 | 7 | 10 |
+
+- **NATURAL JOIN**
+
+  > The **NATURAL JOIN** operation, denoted by `*`, was created to get >rid of the second attribute in an EQUIJOIN condition.
+
+  > Let R(A, B, C, D) and S(C, D, E) be two relations. The implicit join condition includes each pair of attributes with the same name, joined with an "AND":  
+  > R.C = S.C AND R.D = S.D  
+  > The result will keep only one attribute of each pair, so the result schema would be:
+
+  > Result schema: (A, B, C, D, E)
+
+  > Example tables:  
+  > Let R =  
+  > | A | B | C | D |  
+  > |---|---|---|---|  
+  > | 1 | 2 | 5 | 6 |  
+  > | 3 | 4 | 7 | 8 |
+
+  > Let S =  
+  > | C | D | E |  
+  > |---|---|---|  
+  > | 5 | 6 | 9 |  
+  > | 7 | 8 | 10 |
+
+  > The **NATURAL JOIN** result (R \* S) will be:  
+  > | A | B | C | D | E |  
+  > |---|---|---|---|---|  
+  > | 1 | 2 | 5 | 6 | 9 |  
+  > | 3 | 4 | 7 | 8 | 10 |
+
+  > Note: **NATURAL JOIN** chỉ giữ lại một phiên bản của mỗi cột trùng lặp (C và D).
 
 ## SQL commands
 
