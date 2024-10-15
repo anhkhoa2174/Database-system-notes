@@ -24,7 +24,7 @@ WHERE LNAME <mark>LIKE</mark> '%English%' ( Tìm cả những người McEnglish
 ------------------------------------------------
 SELECT FNAME, LNAME, SALARY
 FROM EMPLOYEE
-WHERE TRIM(LNAME)='English'  ( TRIM loại bỏ khoảng trắng thừ : '   English ' -> 'English')
+WHERE TRIM(LNAME)='English'  ( TRIM loại bỏ khoảng trắng thừ : '   English ' -> 'English'
 ;
 ------------------------------------------------
 SELECT FNAME AS "FIRST NAME", LNAME, SALARY (as là đổi tên cột FNAME thành FIRST NAME)
