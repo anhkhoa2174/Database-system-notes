@@ -122,6 +122,31 @@
 
 - `BETWEEN`, `AND`, `OR`, `NOT`
 
-- `ORDER BY`, `LIKE`
+- `ORDER BY`, `LIKE`. `ORDER BY` thì có ASC và DESC (mặc định không để gì la ASC)
 
 - `UPDATE`, `SET`, `INSERT INTO`, `DELETE FROM`
+
+- Trong lệnh ALTER TABLE table_name, khi thêm 1 cột ta không cần sử dụng từ COLUMN. VD
+> ALTER TABLE EMPLOYEE
+> ADD COUNT INT
+- Nhưng khi xóa 1 cột ta phải sử dụng cụm column :
+> ALTER TABLE EMPLOYEE
+> DROP COLUMN COUNT
+
+- Trong lệnh ALTER TABLE table_name, khi thêm constraint ta phải sử dụng từ khóa CONSTRAINT. VÍ DỤ KHI THÊM PRIMARY KEY CONSTRAINT:
+> ALTER TABLE table_name
+> ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
+- hoặc KHI THÊM FOREIGN KEY CONSTRAINT:
+> ALTER TABLE table_name
+> ADD CONSTRAINT constraint_name FOREIGN KEY (column_name)
+> REFERENCES other_table_name(other_column_name);
+- TƯƠNG TỰ KHI THÊM CONSTRAINT CHECK HAY UNIQUE
+
+- TRONG LỆNH CASCADE ĐỐI VỚI REFERECING KEY, CHỈ CÓ DELETE VÀ UPDATE, KHÔNG CÓ INSERT
+> ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
+> ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
+> ON DELETE RESTRICT: Ngăn chặn xóa bản ghi cha nếu có bản ghi con tham chiếu.
+> ON DELETE NO ACTION: Tương tự RESTRICT, nhưng có thể trì hoãn.
+> ON UPDATE CASCADE: Cập nhật bản ghi con khi bản ghi cha bị cập nhật.
+> ON UPDATE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị cập nhật.
+> ON UPDATE SET DEFAULT: Đặt khóa ngoại về giá trị mặc định khi bản ghi cha bị cập nhật
