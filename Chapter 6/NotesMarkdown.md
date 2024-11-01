@@ -132,7 +132,7 @@
 - Nhưng khi xóa 1 cột ta phải sử dụng cụm column :
 > ALTER TABLE EMPLOYEE
 > DROP COLUMN COUNT
-
+>
 - Trong lệnh ALTER TABLE table_name, khi thêm constraint ta phải sử dụng từ khóa CONSTRAINT. VÍ DỤ KHI THÊM PRIMARY KEY CONSTRAINT:
 > ALTER TABLE table_name
 > ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
@@ -141,7 +141,7 @@
 > ADD CONSTRAINT constraint_name FOREIGN KEY (column_name)
 > REFERENCES other_table_name(other_column_name);
 - TƯƠNG TỰ KHI THÊM CONSTRAINT CHECK HAY UNIQUE
-
+>
 - TRONG LỆNH CASCADE ĐỐI VỚI REFERECING KEY, CHỈ CÓ DELETE VÀ UPDATE, KHÔNG CÓ INSERT
 > ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
 > ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
@@ -150,3 +150,27 @@
 > ON UPDATE CASCADE: Cập nhật bản ghi con khi bản ghi cha bị cập nhật.
 > ON UPDATE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị cập nhật.
 > ON UPDATE SET DEFAULT: Đặt khóa ngoại về giá trị mặc định khi bản ghi cha bị cập nhật
+>
+> SYNTAX DÀNH CHO FUNCTION
+> CREATE OR REPLACE FUNCTION function_name 
+    (parameter1 IN | OUT | IN OUT datatype, parameter2 IN | OUT | IN OUTdatatype, ...)
+RETURN return_datatype 
+IS
+    -- Biến cục bộ và khai báo (nếu cần)
+BEGIN
+    -- Logic và câu lệnh của hàm
+    RETURN <giá trị trả về>;
+EXCEPTION
+    -- Xử lý ngoại lệ (nếu cần)
+END function_name;
+>
+> SYNTAX DÀNH CHO CURSOR
+>  Declaring stored procedures:
+ CREATE [OR REPLACE] PROCEDURE 
+procedure_name
+ [(parameter_name [IN | OUT | IN OUT] 
+datatype )]
+ {IS | AS}
+ BEGIN
+ procedure_body
+ END procedure_name;
