@@ -126,9 +126,10 @@
 
 - `UPDATE`, `SET`, `INSERT INTO`, `DELETE FROM`
 
-# Thêm Constraints trong SQL
+
 
 ```sql
+-- Thêm Constraints trong SQL
 -- Thêm PRIMARY KEY CONSTRAINT
 ALTER TABLE table_name
 ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
@@ -144,8 +145,7 @@ ADD CONSTRAINT constraint_name CHECK (condition);
 ALTER TABLE table_name
 ADD CONSTRAINT constraint_name UNIQUE (column_name);
 Cascade với Referencing Key
-markdown
-Copy code
+-- Các loại ON DELETE/UPDATE cho REFERENCING KEY
 - ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
 - ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
 - ON DELETE RESTRICT: Ngăn chặn xóa bản ghi cha nếu có bản ghi con tham chiếu.
@@ -153,9 +153,8 @@ Copy code
 - ON UPDATE CASCADE: Cập nhật bản ghi con khi bản ghi cha bị cập nhật.
 - ON UPDATE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị cập nhật.
 - ON UPDATE SET DEFAULT: Đặt khóa ngoại về giá trị mặc định khi bản ghi cha bị cập nhật.
-Cú pháp dành cho Function
-sql
-Copy code
+
+-- Cú pháp dành cho Function
 CREATE OR REPLACE FUNCTION function_name 
     (parameter1 IN | OUT | IN OUT datatype, parameter2 IN | OUT | IN OUT datatype, ...)
 RETURN return_datatype 
@@ -167,9 +166,9 @@ BEGIN
 EXCEPTION
     -- Xử lý ngoại lệ (nếu cần)
 END function_name;
-Cú pháp dành cho Stored Procedure
-sql
-Copy code
+
+
+-- Cú pháp dành cho Stored Procedure
 CREATE [OR REPLACE] PROCEDURE procedure_name
     (parameter_name [IN | OUT | IN OUT] datatype)
 {IS | AS}
@@ -177,6 +176,4 @@ BEGIN
     procedure_body;
 END procedure_name;
 css
-Copy code
 
-Đoạn này sẽ giúp hiển thị code đẹp, liên tục và dễ đọc trong RMarkdown.
