@@ -144,8 +144,8 @@ ALTER TABLE table_name
 ADD CONSTRAINT constraint_name CHECK (condition);
 ALTER TABLE table_name
 ADD CONSTRAINT constraint_name UNIQUE (column_name);
-Cascade với Referencing Key
--- Các loại ON DELETE/UPDATE cho REFERENCING KEY
+
+-- Các thay đổi cho Referencing Key
 - ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
 - ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
 - ON DELETE RESTRICT: Ngăn chặn xóa bản ghi cha nếu có bản ghi con tham chiếu.
@@ -177,3 +177,50 @@ BEGIN
 END procedure_name;
 css
 
+
+--Cách sử dụng từ khóa LIKE
+ 
+ SELECT *
+ FROM
+ Employee
+ WHERE Address LIKE ‘%HCMC%’;
+
+ SELECT *
+ FROM     Employee
+ WHERE BDate LIKE ‘_ _8_ _ _ _ _ _ _’;
+
+-- toán tử > 
+SELECT *
+FROM  Employee
+WHERE  Salary > ALL (SELECT Salary
+                     FROM Employee
+                     WHERE    DNO=5);
+
+-- toán tử IN 
+SELECT  DISTINCT ESSN
+FROM  WORKS_ON
+WHERE PNO IN  (1, 2, 3);
+
+-- toán tử EXISTS
+SELECT   E.FNAME, E.LNAME
+FROM EMPLOYEE
+WHERE EXISTS (SELECT *
+               FROM DEPENDENT
+               WHERE SSN=ESSN AND 
+                FNAME=DEPENDENT_NAME);
+Tương tự cho NOT EXISTS
+
+-- DELETE FROM ( chỉ dùng để xóa tuple trong TABLE)
+
+-- SYNTAX cho trigger
+ CREATE [OR REPLACE] TRIGGER schema.trigger_name
+ BEFORE | AFTER | INSTEAD OF
+ DELETE | INSERT | UPDATE [OF columns list ] [OR …]
+ ONschema.table_name
+ [REFERENCING  OLD [AS] <old_name> | NEW [AS] 
+<new_name>]
+ [FOR EACH ROW]
+ [WHEN (condition)]
+ BEGIN
+ PL/SQL_block | call_procedure_statement;
+ END trigger_name;
