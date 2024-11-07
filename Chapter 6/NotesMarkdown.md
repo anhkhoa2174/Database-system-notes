@@ -175,19 +175,27 @@ CREATE [OR REPLACE] PROCEDURE procedure_name
 BEGIN
     procedure_body;
 END procedure_name;
-css
+
+ ◼ IN: you must supply a value for the parameter when 
+calling the procedure.
+ ◼ OUT: procedure passes a value for this parameter back 
+to its calling environment after execution.
+ ◼ IN OUT: you must supply a value for the parameter
+ when calling the procedure and that the procedure 
+passes a value back to its calling environment after 
+execution.
+ ◼ Defaults: IN
 
 
 --Cách sử dụng từ khóa LIKE
- 
- SELECT *
- FROM
- Employee
- WHERE Address LIKE ‘%HCMC%’;
+SELECT *
+FROM
+Employee
+WHERE Address LIKE ‘%HCMC%’;
 
- SELECT *
- FROM     Employee
- WHERE BDate LIKE ‘_ _8_ _ _ _ _ _ _’;
+SELECT *
+FROM     Employee
+WHERE BDate LIKE ‘_ _8_ _ _ _ _ _ _’;
 
 -- toán tử > 
 SELECT *
@@ -213,14 +221,17 @@ Tương tự cho NOT EXISTS
 -- DELETE FROM ( chỉ dùng để xóa tuple trong TABLE)
 
 -- SYNTAX cho trigger
- CREATE [OR REPLACE] TRIGGER schema.trigger_name
- BEFORE | AFTER | INSTEAD OF
- DELETE | INSERT | UPDATE [OF columns list ] [OR …]
- ONschema.table_name
- [REFERENCING  OLD [AS] <old_name> | NEW [AS] 
+CREATE [OR REPLACE] TRIGGER schema.trigger_name
+BEFORE | AFTER | INSTEAD OF
+DELETE | INSERT | UPDATE [OF columns list ] [OR …]
+ON schema.table_name
+[REFERENCING  OLD [AS] <old_name> | NEW [AS] 
 <new_name>]
- [FOR EACH ROW]
- [WHEN (condition)]
- BEGIN
- PL/SQL_block | call_procedure_statement;
- END trigger_name;
+[FOR EACH ROW]
+[WHEN (condition)]
+BEGIN
+PL/SQL_block | call_procedure_statement;
+END trigger_name;
+
+ ◼ old is undefined for insert statements.
+ ◼ new is undefined for delete statements
