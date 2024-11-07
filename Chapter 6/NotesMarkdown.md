@@ -126,34 +126,38 @@
 
 - `UPDATE`, `SET`, `INSERT INTO`, `DELETE FROM`
 
-- Trong lệnh ALTER TABLE table_name, khi thêm 1 cột ta không cần sử dụng từ COLUMN. VD
-> ALTER TABLE EMPLOYEE
-> ADD COUNT INT
-- Nhưng khi xóa 1 cột ta phải sử dụng cụm column :
-> ALTER TABLE EMPLOYEE
-> DROP COLUMN COUNT
->
-- Trong lệnh ALTER TABLE table_name, khi thêm constraint ta phải sử dụng từ khóa CONSTRAINT. VÍ DỤ KHI THÊM PRIMARY KEY CONSTRAINT:
-> ALTER TABLE table_name
-> ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
-- hoặc KHI THÊM FOREIGN KEY CONSTRAINT:
-> ALTER TABLE table_name
-> ADD CONSTRAINT constraint_name FOREIGN KEY (column_name)
-> REFERENCES other_table_name(other_column_name);
-- TƯƠNG TỰ KHI THÊM CONSTRAINT CHECK HAY UNIQUE
->
-- TRONG LỆNH CASCADE ĐỐI VỚI REFERECING KEY, CHỈ CÓ DELETE VÀ UPDATE, KHÔNG CÓ INSERT
-> ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
-> ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
-> ON DELETE RESTRICT: Ngăn chặn xóa bản ghi cha nếu có bản ghi con tham chiếu.
-> ON DELETE NO ACTION: Tương tự RESTRICT, nhưng có thể trì hoãn.
-> ON UPDATE CASCADE: Cập nhật bản ghi con khi bản ghi cha bị cập nhật.
-> ON UPDATE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị cập nhật.
-> ON UPDATE SET DEFAULT: Đặt khóa ngoại về giá trị mặc định khi bản ghi cha bị cập nhật
->
-> SYNTAX DÀNH CHO FUNCTION
-> CREATE OR REPLACE FUNCTION function_name 
-    (parameter1 IN | OUT | IN OUT datatype, parameter2 IN | OUT | IN OUTdatatype, ...)
+# Thêm Constraints trong SQL
+
+```sql
+-- Thêm PRIMARY KEY CONSTRAINT
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name PRIMARY KEY (column_name);
+
+-- Thêm FOREIGN KEY CONSTRAINT
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name FOREIGN KEY (column_name)
+REFERENCES other_table_name(other_column_name);
+
+-- Thêm CONSTRAINT CHECK hoặc UNIQUE
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name CHECK (condition);
+ALTER TABLE table_name
+ADD CONSTRAINT constraint_name UNIQUE (column_name);
+Cascade với Referencing Key
+markdown
+Copy code
+- ON DELETE CASCADE: Xóa bản ghi con khi bản ghi cha bị xóa.
+- ON DELETE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị xóa.
+- ON DELETE RESTRICT: Ngăn chặn xóa bản ghi cha nếu có bản ghi con tham chiếu.
+- ON DELETE NO ACTION: Tương tự RESTRICT, nhưng có thể trì hoãn.
+- ON UPDATE CASCADE: Cập nhật bản ghi con khi bản ghi cha bị cập nhật.
+- ON UPDATE SET NULL: Đặt khóa ngoại thành NULL khi bản ghi cha bị cập nhật.
+- ON UPDATE SET DEFAULT: Đặt khóa ngoại về giá trị mặc định khi bản ghi cha bị cập nhật.
+Cú pháp dành cho Function
+sql
+Copy code
+CREATE OR REPLACE FUNCTION function_name 
+    (parameter1 IN | OUT | IN OUT datatype, parameter2 IN | OUT | IN OUT datatype, ...)
 RETURN return_datatype 
 IS
     -- Biến cục bộ và khai báo (nếu cần)
@@ -163,14 +167,16 @@ BEGIN
 EXCEPTION
     -- Xử lý ngoại lệ (nếu cần)
 END function_name;
->
-> SYNTAX DÀNH CHO CURSOR
->  Declaring stored procedures:
- CREATE [OR REPLACE] PROCEDURE 
-procedure_name
- [(parameter_name [IN | OUT | IN OUT] 
-datatype )]
- {IS | AS}
- BEGIN
- procedure_body
- END procedure_name;
+Cú pháp dành cho Stored Procedure
+sql
+Copy code
+CREATE [OR REPLACE] PROCEDURE procedure_name
+    (parameter_name [IN | OUT | IN OUT] datatype)
+{IS | AS}
+BEGIN
+    procedure_body;
+END procedure_name;
+css
+Copy code
+
+Đoạn này sẽ giúp hiển thị code đẹp, liên tục và dễ đọc trong RMarkdown.
